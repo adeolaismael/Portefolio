@@ -1,345 +1,1017 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Ismael Portefolio"/>
-    <title>Ismael Portefolio</title>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ismael Aminou - Data Analyst &amp; futur Chef de Projet IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F5FB;
+    --surface:#FFFFFF;
+    --line:#E3E1F0;
+    --ink:#1C1B2E;
+    --ink-soft:#6A6880;
+    --primary:#5B4FE0;
+    --primary-soft:rgba(91,79,224,0.10);
+    --coral:#FF6B4A;
+    --coral-soft:rgba(255,107,74,0.12);
+    --teal:#1FA98D;
+    --teal-soft:rgba(31,169,141,0.12);
+    --gold:#D69E00;
+    --gold-soft:rgba(214,158,0,0.14);
+    --radius:10px;
+    --maxw:1180px;
+    --ease-out:cubic-bezier(0.22,1,0.36,1);
+    --ease-micro:cubic-bezier(0.4,0,0.2,1);
+    --dur-micro:200ms;
+    --dur-reveal:600ms;
+  }
+  .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--primary);z-index:100;pointer-events:none;transform-origin:left;}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;max-width:100%;
+  }
+  h1,h2,h3{margin:0;font-family:'Sora',sans-serif;letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  img{max-width:100%;display:block;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  section{padding:108px 0;}
+  :focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px;}
 
-    <!--box icons-->
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;display:flex;align-items:center;gap:9px;margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;}
+  .e-purple{color:var(--primary);}
+  .e-teal{color:var(--teal);}
+  .e-gold{color:var(--gold);}
+  .e-coral{color:var(--coral);}
+  .section-title{font-size:clamp(26px,3vw,34px);font-weight:700;}
 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(246,245,251,0.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:box-shadow var(--dur-micro) var(--ease-micro),border-color var(--dur-micro) var(--ease-micro);}
+  header.is-scrolled{box-shadow:0 4px 22px rgba(28,27,46,.08);border-bottom-color:transparent;}
+  .nav{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:16px 32px;transition:padding var(--dur-micro) var(--ease-micro);}
+  header.is-scrolled .nav{padding:10px 32px;}
+  .brand{font-family:'Sora',sans-serif;font-weight:700;font-size:16px;}
+  .brand span{color:var(--primary);}
+  .nav-links{display:flex;gap:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--ink);}
 
-    <link rel="stylesheet" href="css/style.css">
-  </head>
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;
+    font-size:14px;font-weight:600;border:1.5px solid var(--ink);cursor:pointer;
+    transition:transform var(--dur-micro) var(--ease-micro),background var(--dur-micro) var(--ease-micro),border-color var(--dur-micro) var(--ease-micro);
+    background:var(--surface);
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--primary);color:#fff;border-color:var(--primary);}
+  .btn-primary:hover{background:#4a3fd1;}
+  .btn-ghost{border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
 
+  /* ---------- hero ---------- */
+  .hero{padding-top:80px;padding-bottom:60px;}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--coral);letter-spacing:.06em;margin-bottom:14px;}
+  .hero-title{font-size:clamp(32px,4.4vw,50px);font-weight:800;line-height:1.1;}
+  .hero-title em{color:var(--primary);font-style:normal;}
+  .hero-pitch{margin-top:20px;font-size:16.5px;color:var(--ink-soft);max-width:480px;}
+  .hero-cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;}
+  .hero-enter{opacity:0;transform:translateY(18px);animation:hero-fade-up 650ms var(--ease-out) forwards;}
+  @keyframes hero-fade-up{to{opacity:1;transform:translateY(0);}}
 
-  <body>
-    <!--header design -->
-    <header class="header">
-        <a href="#" class="logo">Portefolio.</a>
+  .orbit-wrap{width:100%;max-width:440px;aspect-ratio:1/1;margin:0 auto;position:relative;overflow:hidden;}
+  .orbit-rotator{position:absolute;inset:0;animation:orbit-spin 50s linear infinite;transform-origin:50% 50%;}
+  .orbit-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+  .orbit-svg line{stroke:var(--line);stroke-width:2;transition:stroke .2s,stroke-width .2s;}
+  .orbit-svg line.active{stroke:var(--primary);stroke-width:3;}
+  .node-orbit{position:absolute;z-index:2;transform:translate(-50%,-50%);}
+  .node-counter{animation:orbit-counter 50s linear infinite;}
+  .orbit-rotator:has(.node:hover),.orbit-rotator:has(.node:focus-visible){animation-play-state:paused;}
+  .orbit-rotator:has(.node:hover) .node-counter,.orbit-rotator:has(.node:focus-visible) .node-counter{animation-play-state:paused;}
+  @keyframes orbit-spin{to{transform:rotate(360deg);}}
+  @keyframes orbit-counter{to{transform:rotate(-360deg);}}
+  .avatar-wrap{
+    position:absolute;top:50%;left:50%;width:30%;transform:translate(-50%,-50%);
+    z-index:3;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;
+    animation:avatar-float 4.5s ease-in-out infinite;
+  }
+  @keyframes avatar-float{
+    0%,100%{transform:translate(-50%,-50%);}
+    50%{transform:translate(-50%,calc(-50% - 6px));}
+  }
+  .avatar-circle{
+    width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;position:relative;
+    border:4px solid var(--surface);background:var(--surface);
+    box-shadow:0 0 0 3px var(--primary),0 8px 22px rgba(91,79,224,.25);
+    animation:avatar-glow 4.5s ease-in-out infinite;
+  }
+  @keyframes avatar-glow{
+    0%,100%{box-shadow:0 0 0 3px var(--primary),0 8px 22px rgba(91,79,224,.25);}
+    50%{box-shadow:0 0 0 6px rgba(91,79,224,.35),0 10px 30px rgba(91,79,224,.38);}
+  }
+  .avatar-img{width:100%;height:100%;object-fit:cover;display:block;}
+  .avatar-img.is-error{display:none;}
+  .avatar-fallback{
+    display:none;position:absolute;inset:0;align-items:center;justify-content:center;
+    background:var(--primary);color:#fff;font-family:'Sora',sans-serif;font-weight:700;
+    font-size:clamp(18px,5vw,28px);letter-spacing:.04em;
+  }
+  .avatar-circle:has(.avatar-img.is-error) .avatar-fallback{display:flex;}
+  .center-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft);}
+  .node{
+    position:relative;display:inline-block;
+    padding:9px 15px;border-radius:20px;background:var(--surface);
+    border:1.5px solid var(--line);font-family:'IBM Plex Mono',monospace;
+    font-size:12px;font-weight:500;white-space:nowrap;
+    box-shadow:0 3px 10px rgba(28,27,46,.06);
+    transition:transform .18s,border-color .18s,box-shadow .18s;
+  }
+  .node:hover,.node:focus-visible{transform:scale(1.08);box-shadow:0 6px 16px rgba(28,27,46,.14);}
+  .n-purple{border-color:var(--primary);color:var(--primary);}
+  .n-teal{border-color:var(--teal);color:var(--teal);}
+  .n-gold{border-color:var(--gold);color:var(--gold);}
+  .n-coral{border-color:var(--coral);color:var(--coral);}
 
-        <i class="bx bx-menu" id="menu-icon"></i>
+  .orbit-fallback{display:none;}
 
-        <nav class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About me</a>
-            <a href="#education">Education</a>
-            <a href="#latest">Latest project</a>
-            <a href="#certification">Certification</a>
-            <a href="#contact">Contact</a>
-            
-        </nav>
+  /* ---------- marquee entreprises ---------- */
+  .marquee-section{padding:0 0 56px;margin-top:-12px;}
+  .marquee-section .eyebrow{justify-content:center;margin-bottom:18px;}
+  .marquee{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .marquee-track{display:flex;align-items:center;gap:28px;width:max-content;animation:marquee-scroll 32s linear infinite;padding:10px 0;}
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  @keyframes marquee-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .marquee-item{font-family:'IBM Plex Mono',monospace;font-size:clamp(12px,2.4vw,15px);font-weight:500;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
+  .marquee-item.c-primary{color:var(--primary);}
+  .marquee-item.c-coral{color:var(--coral);}
+  .marquee-item.c-teal{color:var(--teal);}
+  .marquee-sep{color:var(--line);font-size:7px;line-height:1;flex:0 0 auto;}
 
-    </header>
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity var(--dur-reveal) var(--ease-out),transform var(--dur-reveal) var(--ease-out);}
+  .reveal.in{opacity:1;transform:translateY(0);}
 
-    <!--home section design-->
-    <section class="home" id="home">
-        <div class="home-content">
-                <h3>Hello, It's Me</h3>
-                <h1>Ismael AMINOU</h1>
-                <h3>And I'm a <span class="multiple-text"></span></h3>
-                <p> My passion revolves around two key points: firstly, implementing machine learning algorithms or designing predictive modeling processes; secondly, helping companies to make relevant decisions in order to increase their sales. 
-                  Contact me and together we'll make your company/project grow.</p>
-            <div class="social-media">
-                <a href="https://www.linkedin.com/in/isma%C3%ABl-aminou/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
-                <a href="https://www.facebook.com/adeola.aminou" target="_blank"><i class='bx bxl-facebook' ></i></a>
-                <a href="https://github.com/adeolaismael" target="_blank"><i class='bx bxl-github'></i></a>
-                
-            </div>
-            <a href="assets/Cv_ingenieur_Ismael_AMINOU.pdf" download="/Cv Ismael AMINOU.pdf" target="_blank" class="btn">Download CV</a>
+  /* ---------- stats ---------- */
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .stat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px 24px;text-align:center;}
+  .stat-num{font-family:'Sora',sans-serif;font-size:clamp(28px,4vw,38px);font-weight:700;color:var(--primary);}
+  .stat-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;margin-top:8px;}
+
+  /* ---------- parcours (bipartite timeline) ---------- */
+  .timeline{margin-top:46px;position:relative;padding-left:28px;}
+  .timeline-line{position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line);transform-origin:top center;transform:scaleY(0);will-change:transform;}
+  .tl-item{position:relative;padding-bottom:36px;opacity:0;transform:translateY(22px);transition:opacity var(--dur-reveal) var(--ease-out),transform var(--dur-reveal) var(--ease-out);}
+  .tl-item.in{opacity:1;transform:translateY(0);}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{position:absolute;left:-28px;top:4px;width:12px;height:12px;border-radius:50%;border:3px solid var(--surface);transition:box-shadow var(--dur-micro) var(--ease-micro);}
+  .tl-item.formation .tl-dot{background:var(--primary);}
+  .tl-item.experience .tl-dot{background:var(--coral);}
+  .tl-dot.is-active{animation:dot-pulse 2.2s ease-in-out infinite;}
+  @keyframes dot-pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(91,79,224,0);}
+    50%{box-shadow:0 0 0 7px rgba(91,79,224,.18);}
+  }
+  .tl-item.experience .tl-dot.is-active{animation-name:dot-pulse-coral;}
+  @keyframes dot-pulse-coral{
+    0%,100%{box-shadow:0 0 0 0 rgba(255,107,74,0);}
+    50%{box-shadow:0 0 0 7px rgba(255,107,74,.2);}
+  }
+  .tl-badge{
+    display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;padding:3px 9px;border-radius:5px;margin-bottom:8px;
+  }
+  .tl-item.formation .tl-badge{background:var(--primary-soft);color:var(--primary);}
+  .tl-item.experience .tl-badge{background:var(--coral-soft);color:var(--coral);}
+  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin-bottom:4px;display:block;}
+  .tl-item h3{font-size:17px;font-weight:700;}
+  .tl-loc{font-size:13px;color:var(--ink-soft);margin-top:2px;}
+  .tl-item p.desc{margin-top:8px;color:var(--ink-soft);font-size:14px;max-width:640px;}
+  .tl-desc-list{margin-top:10px;padding-left:18px;color:var(--ink-soft);font-size:14px;max-width:640px;list-style:disc;}
+  .tl-desc-list li{margin-bottom:8px;line-height:1.55;}
+  .tl-desc-list li:last-child{margin-bottom:0;}
+  .tl-desc-list .tl-cat{color:var(--ink);font-weight:600;}
+
+  /* ---------- competences ---------- */
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px;
+  }
+  .skill-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;border-top:3px solid var(--teal);
+    min-height:260px;display:flex;flex-direction:column;
+  }
+  .skill-card:nth-child(2){border-top-color:var(--primary);}
+  .skill-card:nth-child(3){border-top-color:var(--gold);}
+  .skill-card:nth-child(4){border-top-color:var(--coral);}
+  .skill-card:nth-child(5){border-top-color:var(--teal);}
+  .skill-card:nth-child(6){border-top-color:var(--primary);}
+  .skill-card h3{font-size:14.5px;font-weight:700;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:5px 10px;border-radius:6px;
+    background:var(--bg);border:1px solid var(--line);color:var(--ink);
+    opacity:0;transform:scale(.88);display:inline-block;
+    transition:opacity 500ms var(--ease-out),transform 500ms var(--ease-out),border-color var(--dur-micro) var(--ease-micro),box-shadow var(--dur-micro) var(--ease-micro);
+  }
+  .skill-card.in .tag{opacity:1;transform:scale(1);}
+  .skill-card.in .tag:nth-child(1){transition-delay:0ms;}
+  .skill-card.in .tag:nth-child(2){transition-delay:55ms;}
+  .skill-card.in .tag:nth-child(3){transition-delay:110ms;}
+  .skill-card.in .tag:nth-child(4){transition-delay:165ms;}
+  .skill-card.in .tag:nth-child(5){transition-delay:220ms;}
+  .skill-card.in .tag:nth-child(6){transition-delay:275ms;}
+  .skill-card.in .tag:nth-child(7){transition-delay:330ms;}
+  .skill-card.in .tag:nth-child(8){transition-delay:385ms;}
+  .skill-card.in .tag:nth-child(9){transition-delay:440ms;}
+  .skill-card.in .tag:nth-child(10){transition-delay:495ms;}
+  .tag:hover{transform:translateY(-2px) scale(1.03);border-color:var(--primary);box-shadow:0 4px 10px rgba(91,79,224,.12);}
+
+  /* ---------- projets ---------- */
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;}
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:46px;}
+  .project-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    transition:transform 250ms var(--ease-out),box-shadow 250ms var(--ease-out);
+    display:flex;flex-direction:column;transform-style:preserve-3d;will-change:transform;
+  }
+  .project-card.is-tilting{transition:transform 80ms linear,box-shadow 250ms var(--ease-out);}
+  .project-card:hover,.project-card.is-tilting{box-shadow:0 14px 26px rgba(28,27,46,.10);}
+  .project-thumb-wrap{overflow:hidden;flex:0 0 auto;}
+  .project-thumb{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--bg);transition:transform 450ms var(--ease-out);}
+  .project-card:hover .project-thumb,.project-card.is-tilting .project-thumb{transform:scale(1.05);}
+  .project-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .project-card h3{font-size:16px;font-weight:700;}
+  .project-card p,.project-card .project-desc-list{color:var(--ink-soft);font-size:13.5px;flex:1;}
+  .project-desc-list{margin:0;padding-left:18px;list-style:disc;}
+  .project-desc-list li{margin-bottom:6px;line-height:1.5;}
+  .project-desc-list li:last-child{margin-bottom:0;}
+  .project-skills{margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--primary);letter-spacing:.02em;}
+  .project-thumb-placeholder{display:flex;align-items:center;justify-content:center;aspect-ratio:16/10;font-family:'Sora',sans-serif;font-weight:700;font-size:28px;color:#fff;}
+  .project-thumb-placeholder.bg-teal{background:var(--teal);}
+  .project-thumb-placeholder.bg-coral{background:var(--coral);}
+  .project-thumb-placeholder.bg-primary{background:var(--primary);}
+  .project-thumb-placeholder.bg-gold{background:var(--gold);}
+  .project-link{
+    margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--primary);
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .project-link:hover{text-decoration:underline;}
+
+  /* ---------- certifications & plus ---------- */
+  .certif-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px;}
+  .certif-card{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+  .certif-thumb{width:64px;height:64px;border-radius:8px;object-fit:cover;flex:0 0 64px;border:1px solid var(--line);background:var(--bg);}
+  .certif-icon{width:64px;height:64px;border-radius:8px;flex:0 0 64px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;text-align:center;background:var(--primary-soft);color:var(--primary);border:1px solid var(--line);padding:6px;}
+  .certif-card h3{font-size:15px;font-weight:700;}
+  .certif-card p{margin-top:6px;color:var(--ink-soft);font-size:13px;}
+  .certif-card .project-link{margin-top:8px;color:var(--gold);}
+  .extra-block{margin-top:40px;}
+  .extra-block h3{font-size:15px;font-weight:700;margin-bottom:14px;}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .info-grid-3{grid-template-columns:repeat(3,1fr);}
+  .info-grid-4{grid-template-columns:repeat(4,1fr);}
+  .info-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;}
+  .info-card strong{display:block;font-size:14px;margin-bottom:4px;}
+  .info-card span{font-size:13px;color:var(--ink-soft);}
+
+  /* ---------- contact ---------- */
+  .contact-panel{
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:60px 50px;text-align:center;
+  }
+  .contact-panel h2{font-size:clamp(26px,3.4vw,36px);font-weight:700;max-width:620px;margin:0 auto;}
+  .contact-panel p{color:var(--ink-soft);margin-top:14px;max-width:460px;margin-left:auto;margin-right:auto;}
+  .contact-cta{display:flex;justify-content:center;gap:14px;margin-top:30px;flex-wrap:wrap;}
+  .social-row{display:flex;justify-content:center;gap:22px;margin-top:32px;flex-wrap:wrap;}
+  .social-row a{
+    display:flex;align-items:center;gap:7px;color:var(--ink-soft);font-size:13.5px;
+    transition:color .2s;font-family:'IBM Plex Mono',monospace;
+  }
+  .social-row a:hover{color:var(--primary);}
+  .social-row svg{width:16px;height:16px;}
+  .note-email{margin-top:18px;font-size:12.5px;color:var(--ink-soft);}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .stat-grid{grid-template-columns:1fr 1fr;}
+    .orbit-wrap{display:none;}
+    .orbit-fallback{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+    .nav-links{display:none;}
+    .skills-grid{grid-template-columns:1fr 1fr;}
+    .info-grid-3,.info-grid-4{grid-template-columns:1fr 1fr;}
+    .projects-grid{grid-template-columns:1fr 1fr;}
+    .certif-grid{grid-template-columns:1fr;}
+    section{padding:76px 0;}
+    .wrap{padding:0 20px;}
+    .nav{padding:16px 20px;}
+    header.is-scrolled .nav{padding:10px 20px;}
+    .hero{padding-top:64px;}
+    .marquee-section{padding-bottom:40px;}
+  }
+  @media (max-width:560px){
+    .skills-grid,.projects-grid,.stat-grid,.info-grid,.info-grid-3,.info-grid-4{grid-template-columns:1fr;}
+  }
+  @media (max-width:480px){
+    .wrap{padding:0 16px;}
+    .nav{padding:14px 16px;}
+    header.is-scrolled .nav{padding:8px 16px;}
+    .hero{padding-top:56px;padding-bottom:48px;}
+    .hero-cta{flex-direction:column;align-items:stretch;}
+    .hero-cta .btn{justify-content:center;}
+    .contact-panel{padding:40px 20px;}
+    section{padding:64px 0;}
+    .marquee-track{gap:20px;}
+    .marquee-item{font-size:11px;letter-spacing:.08em;}
+    .marquee-section .wrap{padding:0 16px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    .orbit-rotator,.node-counter,.marquee-track,.avatar-wrap,.avatar-circle{animation:none !important;}
+    .hero-enter{opacity:1 !important;transform:none !important;animation:none !important;}
+    .tl-item,.skill-card .tag{opacity:1 !important;transform:none !important;}
+    .timeline-line{transform:scaleY(1) !important;}
+    .tl-dot.is-active{animation:none !important;}
+    .project-card,.project-thumb{transform:none !important;}
+    .marquee{-webkit-mask-image:none;mask-image:none;}
+    .marquee-track{flex-wrap:wrap;justify-content:center;width:100%;gap:12px 20px;padding:0 32px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<header id="site-header">
+  <nav class="nav">
+    <div class="brand">ISMAEL <span>AMINOU</span></div>
+    <div class="nav-links">
+      <a href="#experience">Expérience</a>
+      <a href="#formation">Formation</a>
+      <a href="#competences">Compétences</a>
+      <a href="#projets">Projets</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-eyebrow hero-enter" style="animation-delay:0ms">CHEF DE PROJET IA</div>
+        <h1 class="hero-title hero-enter" style="animation-delay:100ms">Je relie <em>la donnée</em><br>aux décisions IA.</h1>
+        <p class="hero-pitch hero-enter" style="animation-delay:200ms">Ingénieur diplômé d'ESIGELEC et actuellement en Mastère Spécialisé Chef de projet IA à SKEMA Business School, j'évolue depuis trois ans entre data analyse et gestion de projet, au service d'organisations comme la Caisse d'Épargne, le Groupe Renault et EDF. Mon terrain de jeu : transformer des besoins métiers flous en tableaux de bord clairs, et des données brutes en décisions actionnables. À côté de l'écran, je retrouve la même discipline sur un ring de boxe ou un plateau de dames - anticiper, structurer, exécuter.</p>
+        <div class="hero-cta hero-enter" style="animation-delay:320ms">
+          <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+          <a href="assets/Cv_Ismael_AMINOU_CDP_IA.pdf" class="btn btn-ghost" download="Cv_Ismael_AMINOU_CDP_IA.pdf">Télécharger mon CV</a>
+          <a href="#contact" class="btn btn-ghost">Me contacter</a>
         </div>
 
-        <div class="home-img">
-            <img src="images/perso1.jpg" alt="">
+        <!-- mobile fallback nav -->
+        <div class="orbit-fallback">
+          <a href="#experience" class="node n-purple">Expérience</a>
+          <a href="#formation" class="node n-purple">Formation</a>
+          <a href="#competences" class="node n-teal">Compétences</a>
+          <a href="#projets" class="node n-gold">Projets</a>
+          <a href="#certifications" class="node n-coral">Certifications</a>
+          <a href="#contact" class="node n-purple">Contact</a>
         </div>
-    </section>
-
-    <!--About section design -->
-
-    <section class="about" id="about">
-
-      <div class="about-img">
-        <img src="images/perso1.jpg" alt="">
-        <span class="circle-spin"></span>
       </div>
-      <div class="about-content">
-        <h2 class="heading">About <span>Me</span></h2>
-        
-        <p>Currently an intern at Renault Ampère cléon, I'm in my final year of engineering studies (BAC+5) at ESIGELEC in Rouen, specializing in Big Data for Digital Transformation. Motivated and determined by the idea of joining a data unit, I'm actively looking for real professional experience that will enable me to put my training, creativity and dynamism to good use, and to take part in carrying out the projects of an innovative company. 
-          Thanks to my various academic projects in data and my professional and personal career path, I have developed IT skills in database modeling, data analysis, data visualization and artificial intelligence.
-          </p>
 
-          <h2 class="heading">My <span>skills</span></h2>
-          <div class="skills-container">
-            <div class="skill">Python</div>
-            <div class="skill">FastAPI</div>
-            <div class="skill">Git</div>
-            <div class="skill">MongoDB</div>
-            <div class="skill">Neo4j</div>
-            <div class="skill">Flask</div>
-            <div class="skill">Spark</div>
-            <div class="skill">SQL</div>
-            <div class="skill">Docker</div>
-            <div class="skill">CI/CD</div>
-            <div class="skill">Azure cloud</div>
-            <div class="skill">Java</div>
-            <div class="skill">Power Bi</div>
-            <div class="skill">Spotfire</div>
-            <div class="skill">Looker Studio</div>
-            <div class="skill">Html/CSS</div>
-            <div class="skill">Transformers</div>
-            
+      <div class="orbit-wrap hero-enter" id="orbit" style="animation-delay:420ms">
+        <div class="orbit-rotator">
+          <svg class="orbit-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <line id="edge-formation" x1="240" y1="240" x2="240" y2="55"/>
+            <line id="edge-competences" x1="240" y1="240" x2="416" y2="183"/>
+            <line id="edge-projets" x1="240" y1="240" x2="349" y2="390"/>
+            <line id="edge-certifications" x1="240" y1="240" x2="131" y2="390"/>
+            <line id="edge-contact" x1="240" y1="240" x2="64" y2="183"/>
+          </svg>
+
+          <div class="node-orbit" style="top:11.46%;left:50%;">
+            <div class="node-counter">
+              <a href="#formation" class="node n-purple" data-edge="edge-formation">Formation</a>
+            </div>
           </div>
+          <div class="node-orbit" style="top:38.13%;left:86.67%;">
+            <div class="node-counter">
+              <a href="#competences" class="node n-teal" data-edge="edge-competences">Compétences</a>
+            </div>
+          </div>
+          <div class="node-orbit" style="top:81.25%;left:72.71%;">
+            <div class="node-counter">
+              <a href="#projets" class="node n-gold" data-edge="edge-projets">Projets</a>
+            </div>
+          </div>
+          <div class="node-orbit" style="top:81.25%;left:27.29%;">
+            <div class="node-counter">
+              <a href="#certifications" class="node n-coral" data-edge="edge-certifications">Certifications</a>
+            </div>
+          </div>
+          <div class="node-orbit" style="top:38.13%;left:13.33%;">
+            <div class="node-counter">
+              <a href="#contact" class="node n-purple" data-edge="edge-contact">Contact</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="avatar-wrap">
+          <div class="avatar-circle">
+            <img class="avatar-img" src="images/perso1.jpg" alt="Photo d'Ismael Aminou" loading="eager" onerror="this.classList.add('is-error')">
+            <span class="avatar-fallback" aria-hidden="true">IA</span>
+          </div>
+          <span class="center-label">ISMAEL</span>
+        </div>
       </div>
-    </section>
-
-
-   <!-- Experience section --> 
-
-    <section class="education" id="education">
-
-      <h2 class="heading">My <span>Journey</span></h2>
-
-      <div class="education-row">
-        
-        <div class="education-column">
-
-          <h3 class="title">Education</h3>
-
-          <div class="education-box">
-            <div class="education-content">
-              <div class="content">
-                <div class="year"><i class='bx bxs-calendar' ></i> 2021 - 2024 </div>
-                <h3>Master Degree - ESIGELEC</h3>
-                <h2>Rouen, France</h2>
-                <p><span>Data science </span>: Machine Learning, Deep Learning, R, Hadoop, Power BI, Data Studio, Google Cloud, Spark, Hive/HDFS, PySpark.<br>
-                        <span>Database</span>  : MySQL,SQL MongoDB, BigQuery,PL/SQL.<br>
-                       <span>Tools</span>  : Git, Docker, ETL(Talend), ArcGIS.<br>
-                         <span> Programming</span> : SQL, Java, HTML/CSS, C#, C, C++, Python (Pandas, Sklearn, Seaborn, Randomforest).</p>
-              </div>
-            </div>
-          
-            <div class="education-content">
-              <div class="content">
-                <div class="year"><i class='bx bxs-calendar' ></i> 2019 - 2021 </div>
-                <h3>Integrated preparatory cycle at ESIGELEC</h3>
-                <h2>Cotonou, Benin</h2>
-                <p>Option MPSI : Mathematics, Physics and Engineering</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-
-        <div class="education-column">
-
-          <h3 class="title">Experience</h3>
-
-          <div class="education-box">
-            <div class="education-content">
-              <div class="content">
-                <div class="year"><i class='bx bxs-calendar' ></i> Juin - Décembre 2024 </div>
-                <h3>Data Analyst  Digital - Renault</h3>
-                <h2>Rouen, France</h2>
-                <p>Definition of requirements with business teams.<br>
-                  Data analysis, collection and processing in GCP with Python and/or SQL.<br>
-                  Restitute data on Looker & Spotfire.<br> 
-                  </p>
-
-              </div>
-            </div>
-          
-            <div class="education-content">
-              <div class="content">
-                <div class="year"><i class='bx bxs-calendar' ></i> Avril-Septembre 2023 </div>
-                <h3>Data Analyst - EDF</h3>
-                <h2>Montévrain, France</h2>
-                
-                <p> 1. Setting up new indicators on Power BI<br>
-                  - Define needs with business teams.<br>
-                  - Export, transform and prepare data with Power Query.<br>
-                  - Create columns and measures in DAX.<br>
-                  - Apply filters to visuals for more precise analysis.<br>
-                  <br>
-                  2- Set up reports to monitor company activities.<br>
-                  - Create dashboard models and identify the most important KPIs for monitoring the company's activities.<br> 
-                  - Queries, parameterization and development on Power BI.<br>
-                  - Tests de vérification des développements.
-
-                  </p>
-
-              </div>
-            </div>
-
-            <div class="education-content">
-              <div class="content">
-                <div class="year"><i class='bx bxs-calendar' ></i> Juillet - Août 2020 </div>
-                <h3>Data Analyst - Banque Atlantique</h3>
-                <h2>Cotonou, Benin</h2>
-                <p>- Develop KPIs for monitoring the Bank's performance.<br>
-                  - Create reports and dashboards, set up KPIs and performance reporting.<br>
-                  - Produce technical and functional documentation
-                  </p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Project section --> 
-    <section class="latest" id="latest">
-        <h2 class="heading">Latest <span>Project</span></h2>
-
-          <div class="portefolio-container">
-
-            <div class="portefolio-box">
-              <img src="images/IlewaAI.webp" alt="">
-                <div class="portefolio-layer">
-                  <h4>Benin Multimodal and multilingual AI</h4>
-                  <p>Generate images from local language.</p>
-                    <a href="https://github.com/femiariel/IlewaAI" target="_blank"><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
-
-            <div class="portefolio-box">
-                <img src="images/Sentiment analysis.webp" alt="">
-                  <div class="portefolio-layer">
-                    <h4>Sentiment analysis in real-time</h4>
-                    <p>Sentiment analysis in Reddit comments in real time with spark streaming and apache kafka</p>
-                      <a href="https://github.com/adeolaismael/Sentiment_analysis" target="_blank"><i class='bx bx-link-external'></i></a>
-                  </div>
-            </div>
-          
-            <div class="portefolio-box">
-                <img src="images/Search-by-similarity.webp" alt="">
-                  <div class="portefolio-layer">
-                    <h4>Search by similarity</h4>
-                    <p>A function that retrieves the dates on which the grant agreement was signed, and the amount of the grant from the private sector study and assistance fund.</p>
-                      <a href="https://github.com/adeolaismael/Search-by-similarity" target="_blank"><i class='bx bx-link-external'></i></a>
-                  </div>
-            </div>
-
-            <div class="portefolio-box">
-                <img src="images/GoCod.webp" alt="">
-                  <div class="portefolio-layer">
-                    <h4>GoCod</h4>
-                    <p>AI-assisted project creation tool,to generate a project in just a few minutes using a simplified form, along with personalised recommendations.</p>
-                      <a href="https://github.com/adeolaismael/GoCod" target="_blank"><i class='bx bx-link-external'></i></a>
-                  </div>
-            </div>
-
-            <div class="portefolio-box">
-                <img src="images/RapidResQ.webp" alt="">
-                  <div class="portefolio-layer">
-                    <h4>RapidResQ</h4>
-                    <p>Develop a voice-activated service for registering medical transports. </p>
-                      <a href="https://github.com/adeolaismael/RapidResQ" target="_blank"><i class='bx bx-link-external'></i></a>
-                  </div>
-            </div>
-    
-            <div class="portefolio-box">
-                <img src="images/ML-RFID.webp" alt="">
-                  <div class="portefolio-layer">
-                    <h4>RFID et Machine Learning</h4>
-                    <p>The aim is to detect whether the Tags are in the right boxes</p>
-                      <a href="https://github.com/adeolaismael/ML-et-RFID" target="_blank"><i class='bx bx-link-external'></i></a>
-                  </div>
-            </div>
-  
-          </div>
-
-    </section>
-
-
-
-    <!-- Certification section --> 
-    <section class="certification" id="certification">
-      <h2 class="heading">My <span>Certification</span></h2>
-
-        <div class="certification-container">
-          <div class="certification-box">
-              <img src="images/certif_1.png" alt="">
-                <div class="certification-layer">
-                  <h4>Data analysis with Python</h4>
-                  <p>The fundamentals of data analysis with Python. knowing how to read data from sources like CSVs and SQL, and how to use libraries like Numpy, Pandas, Matplotlib, and Seaborn to process and visualize data.
-                  </p>
-                    <a href="https://www.freecodecamp.org/certification/fccc0b703a3-a2eb-48d8-a82e-0eaddb3e6921/data-analysis-with-python-v7"><i class='bx bx-link-external'></i></a>
-                </div>
-          </div>
-        
-          <div class="certification-box">
-              <img src="images/certif_2.jpeg" alt="">
-                <div class="certification-layer">
-                  <h4>Become an Power Bi expert</h4>
-                  <p>This course gave me an insight into Power Bi Desktop, Mashup, Power Query, Dax and Power Bi Services.</p>
-                    <a href="https://www.udemy.com/certificate/UC-e10c86a6-f046-4fb2-ad4c-1953945ed1f3/"><i class='bx bx-link-external'></i></a>
-                </div>
-          </div>
-
-
-        </div>
-
+    </div>
   </section>
 
+  <!-- BANNIÈRE ENTREPRISES -->
+  <section class="marquee-section" aria-label="Mon parcours en entreprise">
+    <div class="wrap">
+      <div class="eyebrow e-teal" style="justify-content:center;">Mon parcours en entreprise</div>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item c-primary">Caisse d'Épargne</span><span class="marquee-sep" aria-hidden="true">◆</span>
+        <span class="marquee-item c-coral">Renault</span><span class="marquee-sep" aria-hidden="true">◆</span>
+        <span class="marquee-item c-teal">EDF</span><span class="marquee-sep" aria-hidden="true">◆</span>
+        <span class="marquee-item c-primary">Caisse d'Épargne</span><span class="marquee-sep" aria-hidden="true">◆</span>
+        <span class="marquee-item c-coral">Renault</span><span class="marquee-sep" aria-hidden="true">◆</span>
+        <span class="marquee-item c-teal">EDF</span><span class="marquee-sep" aria-hidden="true">◆</span>
+      </div>
+    </div>
+  </section>
 
-<!-- Contact section -->
-    <section class="contact" id="contact">
+  <!-- STATS -->
+  <section id="profil">
+    <div class="wrap reveal">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num" data-count="2">0</div><div class="stat-label">Formations</div></div>
+        <div class="stat-card"><div class="stat-num" data-count="3">0</div><div class="stat-label">Expériences pro</div></div>
+        <div class="stat-card"><div class="stat-num" data-count="8">0</div><div class="stat-label">Projets data &amp; IA</div></div>
+        <div class="stat-card"><div class="stat-num" data-count="16" data-suffix="+">0</div><div class="stat-label">Outils &amp; technos</div></div>
+      </div>
+    </div>
+  </section>
 
-      <h2 class="heading">Contact <span>Me</span></h2>
-
-      <form id="contact-form" action="https://formspree.io/f/xdoqpjld" method="post">
-        <div class="input-box">
-          <input type="text" name="name" placeholder="Full Name" required>
-          <input type="email" name="_replyto" placeholder="Email Address" required>
+  <!-- EXPÉRIENCE -->
+  <section id="experience">
+    <div class="wrap reveal">
+      <div class="eyebrow e-coral">Expérience</div>
+      <h2 class="section-title">3 ans en conduite de projets Data</h2>
+      <div class="timeline" data-timeline>
+        <div class="timeline-line" aria-hidden="true"></div>
+        <div class="tl-item experience">
+          <span class="tl-dot"></span>
+          <span class="tl-badge">Expérience</span>
+          <span class="tl-date">Sept. 2025 – Sept. 2026</span>
+          <h3>Chef de Projet Data - Data Analytics &amp; Visualisation - Caisse d'Épargne</h3>
+          <div class="tl-loc">Paris, France</div>
+          <ul class="tl-desc-list">
+            <li>Garanti la réalisation de projets Data analytics (data modeling, data visualisation) conformément aux engagements client : périmètre, qualité, coûts et délais. 100 % des jalons respectés, livrables validés sans réserve.</li>
+            <li>Analysé l'expression de besoins client, identifié les solutions adéquates et rédigé les cahiers des charges et la documentation technique et opérationnelle, specs adoptées dès la première présentation.</li>
+            <li>Animé les comités de pilotage et de suivi, produit les tableaux de bord et reportings client/hiérarchie, garanti la complétude des process pour un passage réussi en production -adoption de 90 % à 3 mois.</li>
+          </ul>
         </div>
-
-        <div class="input-box">
-          <input type="number" name="_number" placeholder="Mobile number"required>
-          <input type="text" name="_subject" placeholder="Subject" required>
+        <div class="tl-item experience">
+          <span class="tl-dot"></span>
+          <span class="tl-badge">Expérience</span>
+          <span class="tl-date">Juin - Déc. 2024</span>
+          <h3>Chef de Projet Data - Data Lake &amp; Architecture - Groupe Renault</h3>
+          <div class="tl-loc">Cléon, France</div>
+          <ul class="tl-desc-list">
+            <li>Piloté la mise en place d'un Data Lake (GCP, BigQuery) et garanti la coordination entre les équipes internes et le client : périmètre, qualité, délais et profitabilité : livraison en 8 semaines, passage en production sans incident.</li>
+            <li>Évalué les évolutions d'usages des solutions souscrites par le client et préconisé les évolutions d'architecture adéquates : recommandations validées, continuité de service garantie.</li>
+            <li>Participé à l'amélioration continue : documentation opérationnelle, comités de suivi de la phase d'implémentation et reporting hiérarchique : bonnes pratiques capitalisées, zéro réserve en recette.</li>
+          </ul>
         </div>
+        <div class="tl-item experience">
+          <span class="tl-dot"></span>
+          <span class="tl-badge">Expérience</span>
+          <span class="tl-date">Avr. - Oct. 2023</span>
+          <h3>Chef de Projet Data - Data Warehouse &amp; Analytics - EDF-UTO</h3>
+          <div class="tl-loc">Montévrain, France</div>
+          <ul class="tl-desc-list">
+            <li>Garanti l'organisation générale d'un projet Data Warehouse pour un groupe de 80 000 salariés : coordination équipes internes et client, respect des engagements contractuels, animation des comités de pilotage : mise en production dans les délais.</li>
+            <li>Rédigé les cahiers des charges et la documentation technique et opérationnelle ; garanti la complétude des process de passage en production avec les équipes de production : 0 incident bloquant le jour du go-live.</li>
+            <li>Contrôlé le respect des engagements globaux du contrat et assuré le reporting client et hiérarchique : 4 directions clientes satisfaites dès le premier mois, amélioration continue documentée.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message..." required></textarea>
-        <input type="submit" value="Send message" class="btn">
-      </form>
+  <!-- FORMATION -->
+  <section id="formation">
+    <div class="wrap reveal">
+      <div class="eyebrow e-purple">Formation</div>
+      <h2 class="section-title">Parcours académique</h2>
+      <div class="timeline" data-timeline>
+        <div class="timeline-line" aria-hidden="true"></div>
+        <div class="tl-item formation">
+          <span class="tl-dot"></span>
+          <span class="tl-badge">Formation</span>
+          <span class="tl-date">Oct. 2025 – Sept. 2026</span>
+          <h3>Mastère Spécialisé Chef de Projet IA - SKEMA Business School</h3>
+          <div class="tl-loc">Paris, France</div>
+          <ul class="tl-desc-list">
+            <li>Intelligence artificielle</li>
+            <li>Gestion de projet</li>
+            <li>Art oratoire</li>
+            <li>Data analytics, architecture et Cloud</li>
+          </ul>
+        </div>
+        <div class="tl-item formation">
+          <span class="tl-dot"></span>
+          <span class="tl-badge">Formation</span>
+          <span class="tl-date">Sept. 2021 – Sept. 2024</span>
+          <h3>Cycle Ingénieur - Big Data &amp; Transformation Numérique - ESIGELEC</h3>
+          <div class="tl-loc">Rouen, France</div>
+          <ul class="tl-desc-list">
+            <li><strong class="tl-cat">Data science :</strong> Machine Learning, Deep Learning, R, Hadoop, Power BI, Data Studio, Google Cloud, Spark, Hive/HDFS, PySpark</li>
+            <li><strong class="tl-cat">Bases de données :</strong> MySQL, SQL, MongoDB, BigQuery, PL/SQL</li>
+            <li><strong class="tl-cat">Outils :</strong> Git, Docker, ETL (Talend), ArcGIS</li>
+            <li><strong class="tl-cat">Programmation :</strong> SQL, Java, HTML/CSS, C#, C, C++, Python</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      
-    </section>
+  <!-- COMPETENCES -->
+  <section id="competences">
+    <div class="wrap reveal">
+      <div class="eyebrow e-teal">Compétences</div>
+      <h2 class="section-title">Technique, pilotage et soft skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Langages &amp; frameworks</h3>
+          <div class="skill-tags">
+            <span class="tag">Python</span><span class="tag">Java</span>
+            <span class="tag">HTML/CSS</span><span class="tag">FastAPI</span><span class="tag">Flask</span>
+            <span class="tag">Langchain</span><span class="tag">Langgraph</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Data &amp; intelligence artificielle</h3>
+          <div class="skill-tags">
+            <span class="tag">Spark</span><span class="tag">SQL</span>
+            <span class="tag">MongoDB</span><span class="tag">Neo4j</span><span class="tag">Transformers</span>
+            <span class="tag">IBM Granite</span><span class="tag">Machine Learning</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Cloud &amp; outils</h3>
+          <div class="skill-tags">
+            <span class="tag">Docker</span><span class="tag">CI/CD</span>
+            <span class="tag">Azure Cloud</span><span class="tag">Git</span>
+            <span class="tag">GCP</span><span class="tag">BigQuery</span>
+            <span class="tag">Vertex AI</span><span class="tag">Airflow</span>
+            <span class="tag">Dataiku</span><span class="tag">Alteryx</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Visualisation &amp; BI</h3>
+          <div class="skill-tags">
+            <span class="tag">Power BI</span><span class="tag">DAX</span>
+            <span class="tag">Power Query</span><span class="tag">Spotfire</span>
+            <span class="tag">Looker Studio</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Pilotage de projets Data</h3>
+          <div class="skill-tags">
+            <span class="tag">Data modeling</span><span class="tag">Data visualisation</span>
+            <span class="tag">Data Lake</span><span class="tag">Data Warehouse</span>
+            <span class="tag">Analyse des besoins</span><span class="tag">Cahiers des charges</span>
+            <span class="tag">Documentation technique</span><span class="tag">Comités de pilotage</span>
+            <span class="tag">Reporting</span><span class="tag">Go-live</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Soft skills</h3>
+          <div class="skill-tags">
+            <span class="tag">Communication</span><span class="tag">Adaptabilité</span>
+            <span class="tag">Autonomie</span><span class="tag">Force de proposition</span>
+            <span class="tag">Organisation</span><span class="tag">Gestion des priorités</span>
+            <span class="tag">Agile</span><span class="tag">Scrum/Kanban</span>
+            <span class="tag">Animation d'équipes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- footer design -->
-    <footer class="footer">
-      <div class="footer-text">
-          <p>Copyright &copy; 2024 by Ismael AMINOU| All rights Reserved.</p>
+  <!-- PROJETS -->
+  <section id="projets">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow e-gold">Projets</div>
+          <h2 class="section-title">Huit projets, du prototype au cas métier</h2>
+        </div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-teal">MV</div>
+          </div>
+          <div class="project-body">
+            <h3>Med View</h3>
+            <ul class="project-desc-list">
+              <li>Création d'un tableau de bord de suivi épidémiologique en temps réel.</li>
+              <li>Analyse des taux de contamination, hospitalisations et taux de vaccination par région et par période.</li>
+            </ul>
+            <div class="project-skills">Compétences utilisées : Power BI, DAX, Python, SQL</div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-coral">MA</div>
+          </div>
+          <div class="project-body">
+            <h3>MedAI</h3>
+            <ul class="project-desc-list">
+              <li>Développement d'une solution d'IA conçue pour la surveillance médicale en temps réel.</li>
+              <li>Détection précoce d'anomalies et prédiction des complications afin d'améliorer la prise en charge des patients.</li>
+            </ul>
+            <div class="project-skills">Compétences : Python, IBM Granite, Airflow, Docker, FastAPI, Langchain, Langgraph</div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-primary">IA</div>
+          </div>
+          <div class="project-body">
+            <h3>IlewaAI</h3>
+            <p>IA multimodale et multilingue qui génère des images à partir de langues locales béninoises.</p>
+            <a class="project-link" href="https://github.com/femiariel/IlewaAI" target="_blank" rel="noopener">Voir sur GitHub →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-gold">SA</div>
+          </div>
+          <div class="project-body">
+            <h3>Sentiment analysis en temps réel</h3>
+            <p>Analyse de sentiment sur des commentaires Reddit en temps réel avec Spark Streaming et Apache Kafka.</p>
+            <a class="project-link" href="https://github.com/adeolaismael/Sentiment_analysis" target="_blank" rel="noopener">Voir sur GitHub →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-teal">RS</div>
+          </div>
+          <div class="project-body">
+            <h3>Recherche par similarité</h3>
+            <p>Fonction de recherche par similarité pour retrouver dates de signature et montants de subventions dans un fonds d'étude.</p>
+            <a class="project-link" href="https://github.com/adeolaismael/Search-by-similarity" target="_blank" rel="noopener">Voir sur GitHub →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-coral">GC</div>
+          </div>
+          <div class="project-body">
+            <h3>GoCod</h3>
+            <p>Outil assisté par IA qui génère un projet en quelques minutes à partir d'un formulaire simplifié et de recommandations personnalisées.</p>
+            <a class="project-link" href="https://github.com/adeolaismael/GoCod" target="_blank" rel="noopener">Voir sur GitHub →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-primary">RR</div>
+          </div>
+          <div class="project-body">
+            <h3>RapidResQ</h3>
+            <p>Service vocal pour l'enregistrement et le suivi des transports médicaux.</p>
+            <a class="project-link" href="https://github.com/adeolaismael/RapidResQ" target="_blank" rel="noopener">Voir sur GitHub →</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-thumb-wrap">
+            <div class="project-thumb project-thumb-placeholder bg-gold">RF</div>
+          </div>
+          <div class="project-body">
+            <h3>RFID et Machine Learning</h3>
+            <p>Détection automatique si les tags RFID se trouvent dans les bonnes boîtes.</p>
+            <a class="project-link" href="https://github.com/adeolaismael/ML-et-RFID" target="_blank" rel="noopener">Voir sur GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS, LANGUES & ACTIVITÉS -->
+  <section id="certifications">
+    <div class="wrap reveal">
+      <div class="eyebrow e-coral">Certifications, langues &amp; activités</div>
+      <h2 class="section-title">Formation continue et engagement</h2>
+
+      <div class="extra-block">
+        <h3>Certifications</h3>
+        <div class="certif-grid">
+          <div class="certif-card">
+            <div class="certif-icon">MS<br>Power BI</div>
+            <div>
+              <h3>Microsoft Certified : Power BI Data Analyst Associate</h3>
+              <p>Certification officielle Microsoft en analyse de données avec Power BI.</p>
+            </div>
+          </div>
+          <div class="certif-card">
+            <img class="certif-thumb" src="/images/certif_1.png" alt="Certification freeCodeCamp" loading="lazy">
+            <div>
+              <h3>Data Analysis with Python - FreeCodeCamp</h3>
+              <p>Fondamentaux de l'analyse de données avec Python : lecture de CSV/SQL, Numpy, Pandas, Matplotlib, Seaborn.</p>
+              <a class="project-link" href="https://www.freecodecamp.org/certification/fccc0b703a3-a2eb-48d8-a82e-0eaddb3e6921/data-analysis-with-python-v7" target="_blank" rel="noopener">Voir le certificat →</a>
+            </div>
+          </div>
+          <div class="certif-card">
+            <img class="certif-thumb" src="/images/certif_2.jpeg" alt="Certification Udemy Power BI" loading="lazy">
+            <div>
+              <h3>Devenir expert en Power BI - Udemy</h3>
+              <p>Power BI Desktop, Mashup, Power Query, DAX et Power BI Service.</p>
+              <a class="project-link" href="https://www.udemy.com/certificate/UC-e10c86a6-f046-4fb2-ad4c-1953945ed1f3/" target="_blank" rel="noopener">Voir le certificat →</a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="footer-iconTop">
-        <a href="#home"><i class='bx bx-up-arrow-alt' ></i></a>
+      <div class="extra-block">
+        <h3>Langues</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <strong>Français</strong>
+            <span>Langue maternelle</span>
+          </div>
+          <div class="info-card">
+            <strong>Anglais</strong>
+            <span>Courant (oral et écrit)</span>
+          </div>
+        </div>
       </div>
-    </footer>
 
-    <script>
-      function resetForm() {
-        // Vérifiez que le formulaire ne présente pas d'erreurs de validation avant de réinitialiser
-        if (document.getElementById('contact-form').checkValidity()) {
-          document.getElementById('contact-form').reset();
-        }
+      <div class="extra-block">
+        <h3>Activités</h3>
+        <div class="info-grid info-grid-3">
+          <div class="info-card">
+            <strong>Bénin World Community</strong>
+            <span>Président - diaspora béninoise</span>
+          </div>
+          <div class="info-card">
+            <strong>Rotary Club Bénin</strong>
+            <span>Membre</span>
+          </div>
+          <div class="info-card">
+            <strong>Hackathons et conférences</strong>
+            <span>Data / IA</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-block">
+        <h3>Centres d'intérêt</h3>
+        <div class="info-grid info-grid-4">
+          <div class="info-card"><strong>Boxe</strong></div>
+          <div class="info-card"><strong>Musculation</strong></div>
+          <div class="info-card"><strong>Lecture</strong></div>
+          <div class="info-card"><strong>Jeu de dames</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap reveal">
+      <div class="contact-panel">
+        <div class="eyebrow e-purple" style="justify-content:center;">Contact</div>
+        <h2>Construisons le prochain projet ensemble</h2>
+        <p>Disponible pour un stage, une alternance ou un premier poste de chef de projet IA. N'hésitez pas à me contacter.</p>
+        <div class="contact-cta">
+          <a href="https://www.linkedin.com/in/isma%C3%ABl-aminou/" target="_blank" rel="noopener" class="btn btn-primary">Me contacter sur LinkedIn</a>
+          <a href="assets/Cv_Ismael_AMINOU_CDP_IA.pdf" download="Cv_Ismael_AMINOU_CDP_IA.pdf" class="btn btn-ghost">Télécharger mon CV</a>
+        </div>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/isma%C3%ABl-aminou/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18V9.75H5.67V18h2.67zM7 8.6a1.54 1.54 0 1 0 0-3.08 1.54 1.54 0 0 0 0 3.08zM18.34 18v-4.5c0-2.4-1.28-3.52-2.99-3.52-1.38 0-2 .76-2.34 1.3V9.75h-2.67c.04.86 0 8.25 0 8.25h2.67v-4.6c0-.25.02-.5.1-.68.21-.5.68-1.03 1.48-1.03 1.04 0 1.46.79 1.46 1.96V18h2.67z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/adeolaismael" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.91-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.36 1.12 2.93.86.09-.66.34-1.12.62-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.32.1-2.75 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.43.2 2.49.1 2.75.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.67.94.67 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
+        <p class="note-email">Pas d'email public listé sur le site actuel - pense à en ajouter un (mailto:) si tu veux un contact direct en plus de LinkedIn.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Ismael Aminou - Portfolio Data &amp; IA
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const prefersReducedMotion = () => motionQuery.matches;
+
+  /* ---------- scroll progress ---------- */
+  const scrollBar = document.getElementById('scroll-progress');
+  const updateScrollProgress = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+    scrollBar.style.width = pct + '%';
+  };
+
+  /* ---------- compact header ---------- */
+  const siteHeader = document.getElementById('site-header');
+  const heroSection = document.querySelector('.hero');
+  const updateHeader = () => {
+    if (!heroSection) return;
+    const pastHero = window.scrollY > heroSection.offsetHeight - 80;
+    siteHeader.classList.toggle('is-scrolled', pastHero);
+  };
+
+  /* ---------- timeline line (scroll-driven) ---------- */
+  const tlItems = document.querySelectorAll('.tl-item');
+  const timelines = document.querySelectorAll('[data-timeline]');
+
+  const updateTimelineLine = () => {
+    if (prefersReducedMotion()) return;
+    timelines.forEach(timeline => {
+      const line = timeline.querySelector('.timeline-line');
+      const section = timeline.closest('section');
+      if (!line || !section) return;
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const start = vh * 0.75;
+      const progress = Math.min(1, Math.max(0, (start - rect.top) / (rect.height * 0.85)));
+      line.style.transform = 'scaleY(' + progress + ')';
+    });
+  };
+
+  const onScroll = () => {
+    updateScrollProgress();
+    updateHeader();
+    updateTimelineLine();
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- generic reveal ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); revealIo.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealIo.observe(el));
+
+  /* ---------- stat counters ---------- */
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+  const animateCount = (el, target, suffix, duration) => {
+    const start = performance.now();
+    const tick = now => {
+      const t = Math.min(1, (now - start) / duration);
+      const val = Math.round(easeOutCubic(t) * target);
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+      else el.textContent = target + suffix;
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const statNums = document.querySelectorAll('.stat-num[data-count]');
+  const statIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      if (prefersReducedMotion()) {
+        el.textContent = target + suffix;
+      } else {
+        animateCount(el, target, suffix, 1300);
       }
-    </script>
-      
+      statIo.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  statNums.forEach(el => statIo.observe(el));
 
-    <!-- scroll reveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
+  const setActiveDot = () => {
+    let active = null;
+    let best = Infinity;
+    tlItems.forEach(item => {
+      const dot = item.querySelector('.tl-dot');
+      const rect = item.getBoundingClientRect();
+      const dist = Math.abs(rect.top + rect.height * 0.3 - window.innerHeight * 0.45);
+      if (rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15 && dist < best) {
+        best = dist;
+        active = dot;
+      }
+    });
+    tlItems.forEach(item => item.querySelector('.tl-dot').classList.remove('is-active'));
+    if (active && !prefersReducedMotion()) active.classList.add('is-active');
+  };
 
-    <!--typed js-->
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  const tlIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const item = e.target;
+      const siblings = item.parentElement.querySelectorAll('.tl-item');
+      const idx = [...siblings].indexOf(item);
+      if (prefersReducedMotion()) {
+        item.classList.add('in');
+      } else {
+        setTimeout(() => item.classList.add('in'), idx * 100);
+      }
+      tlIo.unobserve(item);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+  tlItems.forEach(item => tlIo.observe(item));
 
+  window.addEventListener('scroll', setActiveDot, { passive: true });
+  setActiveDot();
 
-      <!--custom js-->
-      <script src="js/script.js"></script>
-  </body>
+  /* ---------- skill tags cascade ---------- */
+  const skillCards = document.querySelectorAll('.skill-card');
+  const skillIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        skillIo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  skillCards.forEach(card => skillIo.observe(card));
+
+  /* ---------- project 3D tilt ---------- */
+  document.querySelectorAll('.project-card').forEach(card => {
+    if (prefersReducedMotion()) return;
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      const rotX = (-y * 10).toFixed(2);
+      const rotY = (x * 10).toFixed(2);
+      card.classList.add('is-tilting');
+      card.style.transform = 'perspective(700px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('is-tilting');
+      card.style.transform = '';
+    });
+  });
+
+  /* ---------- orbit node highlights ---------- */
+  document.querySelectorAll('.orbit-wrap .node').forEach(node => {
+    const edgeId = node.getAttribute('data-edge');
+    const edge = edgeId ? document.getElementById(edgeId) : null;
+    if (!edge) return;
+    node.addEventListener('mouseenter', () => edge.classList.add('active'));
+    node.addEventListener('mouseleave', () => edge.classList.remove('active'));
+    node.addEventListener('focus', () => edge.classList.add('active'));
+    node.addEventListener('blur', () => edge.classList.remove('active'));
+  });
+
+  /* ---------- reduced motion: instant final states ---------- */
+    if (prefersReducedMotion()) {
+    document.querySelectorAll('.hero-enter').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    tlItems.forEach(item => item.classList.add('in'));
+    skillCards.forEach(card => card.classList.add('in'));
+    document.querySelectorAll('.timeline-line').forEach(line => { line.style.transform = 'scaleY(1)'; });
+    statNums.forEach(el => {
+      el.textContent = el.dataset.count + (el.dataset.suffix || '');
+    });
+  }
+
+  motionQuery.addEventListener('change', () => location.reload());
+</script>
+
+</body>
 </html>
